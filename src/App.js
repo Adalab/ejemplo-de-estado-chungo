@@ -3,23 +3,28 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mood: ':D'
+    }
+    this.handleMood = this.handleMood.bind(this);
+  }
+
+  handleMood(e) {
+    const face = e.currentTarget.value;
+    this.setState({
+      mood: face
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <div className="App__face">{this.state.mood}</div>
+
+        <input type="text" onKeyUp={this.handleMood} />
       </div>
     );
   }
